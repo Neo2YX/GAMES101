@@ -46,3 +46,11 @@ Update Date: 2023-6-19
 spp:2000 
 仍存在问题，阴影部分有大量噪点，在spp从1024增加到2000后并未有明显改变
 ![](bin/result_pic/PathTracing_Linux.png)
+
+
+### Assignment8
+![](bin/result_pic/ropeSim.png)
+
+### 存留问题：
++ Assignment6 - SAH加速结构
++ Assignment7 - 噪点问题
