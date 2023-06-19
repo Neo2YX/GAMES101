@@ -244,7 +244,7 @@ void Renderer::Render(const Scene& scene)
     cv::Mat image( scene.height, scene.width, CV_32FC3, framebuffer.data());
     image.convertTo(image, CV_8UC3, 255);
     cv::cvtColor(image, image, cv::COLOR_RGB2BGR);
-    cv::imwrite("rayTracing.png", image);
+    cv::imwrite("result_pic/assignment5_rayCasting.png", image);
     /*
     FILE* fp = fopen("binary.ppm", "wb");
     (void)fprintf(fp, "P6\n%d %d\n255\n", scene.width, scene.height);

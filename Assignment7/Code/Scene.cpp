@@ -87,16 +87,15 @@ Vector3f Scene::castRay(const Ray &ray, int depth) const
             float geoFact = dotProduct(-lightRay, isec.normal) * dotProduct(lightRay,lightPosIsec.normal) / dist2;
             directLight = brdf * lightRayIsec.m->getEmission() * geoFact / lightSamplePdf;
         }else directLight = BLACK;
-        return directLight;
         //calculate indirectLight
         Vector3f brdfLight = (isec.m->sample(ray.direction, isec.normal)).normalized();
         Intersection brdfRayIsec = intersect(Ray(isec.coords, brdfLight));
         float RR = get_random_float();
-        if(RR<RussianRoulette && brdfRayIsec.happened && !brdfRayIsec.m->hasEmission())
+            float brdfSamplePdf = isec.m->pdf(ray.direction, brdfLight, isec.normal);  
+        if(RR<RussianRoulette && brdfRayIsec.happened && !brdfRayIsec.m->hasEmission() && brdfSamplePdf > EPSILON)
         {
             //calculate the rendering function
             Vector3f brdf = isec.m->eval(-brdfLight, -ray.direction, isec.normal);
-            float brdfSamplePdf = isec.m->pdf(ray.direction, brdfLight, isec.normal);  
             indirectLight = castRay(Ray(isec.coords,brdfLight), depth+1);
             indirectLight = indirectLight * brdf * dotProduct(brdfLight, isec.normal) / brdfSamplePdf / RussianRoulette;
         }else indirectLight = BLACK;

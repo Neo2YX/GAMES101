@@ -47,5 +47,5 @@ void Renderer::Render(const Scene& scene)
     cv::Mat image( scene.height, scene.width, CV_32FC3, framebuffer.data());
     image.convertTo(image, CV_8UC3, 255);
     cv::cvtColor(image, image, cv::COLOR_RGB2BGR);
-    cv::imwrite("rayTracing.png", image);
+    cv::imwrite("result_pic/assignment6_rayTracing.png", image);
 }

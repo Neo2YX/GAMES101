@@ -104,6 +104,7 @@ int main(int argc, const char** argv)
         angle = std::stof(argv[2]); // -r by default
         if (argc == 4) {
             filename = std::string(argv[3]);
+            filename = "result_pic/" + filename;
         }
         else
             return 0;
